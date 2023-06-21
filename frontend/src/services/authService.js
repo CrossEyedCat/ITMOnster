@@ -28,7 +28,7 @@ class AuthService {
 
   register(user) {
     return api.post(REGISTER_POSTFIX, {
-      username: user.username,
+      user_name: user.username,
       password: user.password,
     });
   }

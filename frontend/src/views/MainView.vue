@@ -7,8 +7,8 @@
           class="frame-background1"
       />
       <div class="frame-header">
-        <span class="frame-text" @click="$router.push('/register')"><span>авторизоваться</span></span>
-        <span class="frame-text2"><span>о проекте</span></span>
+        <span class="frame-text" @click="$router.push('/login')"><span>авторизоваться</span></span>
+        <span class="frame-text2" @click="$router.push('/MainTasks')"><span>о проекте</span></span>
       </div>
       <div class="frame-frame1">
           <span class="frame-text7" @click="$router.push('/register')"><span>вход / регистрация</span></span>
@@ -34,7 +34,7 @@
 
 <script>
 export default {
-  name: 'Frame',
+  name: 'Main',
   props: {},
   data() {
     return {

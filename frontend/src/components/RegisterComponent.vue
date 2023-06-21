@@ -83,7 +83,7 @@ export default {
 
       this.$store.dispatch("auth/register", this.user).then(
         () => {
-          this.$router.push("/");
+          this.$router.push("/MainTasks");
         },
         (error) => {
           this.loading = false;

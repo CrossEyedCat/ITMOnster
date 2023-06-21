@@ -44,7 +44,7 @@
       </div>
 
       <div class="alternative-option mt-4">
-        Already have an account? <span @click="$router.push('/')">Login</span>
+        Already have an account? <span @click="$router.push('/login')">Login</span>
       </div>
 
       <button type="submit" id="register_button" class="mt-4 btn-pers">

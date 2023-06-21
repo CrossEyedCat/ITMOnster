@@ -1,22 +1,4 @@
 <template>
-  <header>
-    <div class="corner author-info">
-      <p>Зенкевич Артем Андреевич P32081</p>
-    </div>
-    <div class="project-name" @click="$router.push('/')">
-      <h1>Лабораторная работа #4</h1>
-    </div>
-    <div class="corner variant">
-      <p>Вариант: 23489472</p>
-      <button
-        v-if="$store.state.auth.status.loggedIn"
-        @click="logout"
-        class="mt-4 btn btn-danger"
-      >
-        Logout
-      </button>
-    </div>
-  </header>
 </template>
 
 <script>
@@ -32,7 +14,6 @@ export default {
 
 <style scoped>
 header {
-  background-image: url("../assets/background_head.png");
   background-repeat: repeat-x;
   background-blend-mode: revert;
   padding: 15px 25px;

@@ -3,6 +3,7 @@ import MainView from "@/views/MainView";
 import LoginView from "@/views/LoginView";
 import RegisterView from "@/views/RegisterView";
 import MainTasksView from "@/views/MainTasksView";
+import AchievementsView from "@/views/AchievementsView";
 
 const routes = [
   {
@@ -28,6 +29,12 @@ const routes = [
     name: 'mainTasks',
     component: MainTasksView,
     meta: { requiresAuth: true },
+  },
+  {
+    path: '/achievements',
+    name: 'achievements',
+    component: AchievementsView,
+    meta: { requiresAuth: true}
   }
 ];
 

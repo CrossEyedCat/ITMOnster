@@ -3,17 +3,14 @@
        <div class="category-list">
          <ul>
            <li v-for="category in categories" class="row" @click="showMissions(category)">
-            <div class="progress-bar">
-                <div style="position: relative;"><p style="position: absolute;left:0; right: 0; margin: 25px auto; color:white">{{ category }}</p></div>
-                <div class="progress" ></div>
-            </div>
+            <ProgressBar :my_title=category :my_percent=categoryPercentages[category]></ProgressBar>
            </li>
          </ul>
        </div>
        <div class="mission-list">
          <ul>
            <li v-for="mission in missions" class="row">
-            <ProgressBar :total="mission.total" :current="mission.amount" :title="mission.title" :description="mission.description" />
+            <ProgressBarMini :total="mission.total" :current="mission.amount" :title="mission.title" :description="mission.description" />
         </li>
          </ul>
        </div>
@@ -23,6 +20,7 @@
 <script>
     import api from "@/services/api";
     import ProgressBar from '@/components/UI/ProgressBar.vue';
+    import ProgressBarMini from '@/components/UI/ProgressBarMini.vue';
 
     export default {
      data() {
@@ -47,30 +45,44 @@
          this.missions = this.missionsMap[category];
        },
      },
-    //  computed:{
-    //     getCategoryP(c){
-    //         let total = 0;
-    //        let amount = 0;
-    //        let missionsArray = this.missionsMap && this.missionsMap[category] || [];
-    //         for (let i = 0; i < missionsArray.length; i++) {
-    //             if(this.missionsMap[c][i].completed == true){
-    //                 amount++;
-    //             }
-    //             total++;
-    //         }
+     computed: {
+    categoryPercentages() {
+      if (!this.missionsMap) {
+        return {};
+      }
 
-    //         return `${(amount / total) * 100}%`
-    //     }
-    //  },
+      const percentages = {};
+      for (const category of this.categories) {
+        let total = 0;
+        let amount = 0;
+        const missionsArray = this.missionsMap[category] || [];
+
+        for (let i = 0; i < missionsArray.length; i++) {
+          const mission = missionsArray[i];
+            amount += mission.amount;
+          total += mission.total;
+        }
+
+        if (total == 0) {
+          percentages[category] = "0%";
+        } else {
+          percentages[category] = `${(amount / total) * 100}%`;
+        }
+      }
+
+      return percentages;
+    }
+  },
      components:{
         ProgressBar,
+        ProgressBarMini,
      }
    };
 </script>
 
 <style scoped>
     .missions-container{
-        background-color: black;
+      background-color: #151212;
         width: 100%;
         padding: 70px;
     }
@@ -108,17 +120,5 @@
         padding: 0;
         margin: 0;
     }
-    .progress-bar {
-    width: 100%;
-    height: 100%;
-    padding: 0;
-    background-color: #D9D9D9;
-  }
-  
-  .progress {
-    height: 100%;
-    background-color: #EE215B;
-    border-radius: 0;
-  }
 
 </style>

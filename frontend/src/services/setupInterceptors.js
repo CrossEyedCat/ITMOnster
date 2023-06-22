@@ -7,7 +7,6 @@ const setup = () => {
   axiosInstance.interceptors.request.use(
     (config) => {
       const token = TokenService.getLocalAccessToken();
-      console.log(token);
       if (token) {
         config.headers["Authorization"] = "Bearer " + token;
       }

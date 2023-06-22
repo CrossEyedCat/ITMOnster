@@ -3,27 +3,20 @@ import api from "@/services/api";
 
 const LOGIN_POSTFIX = "api/auth/login";
 const REGISTER_POSTFIX = "api/auth/register";
-const LOGOUT_POSTFIX = "api/auth/logout";
 
 class AuthService {
   login(user) {
     return api
       .post(LOGIN_POSTFIX, {
-        username: user.username,
+        user_name: user.username,
         password: user.password,
       })
       .then((response) => {
-        if (response.data.accessToken && response.data.refreshToken) {
-          TokenService.setUser(response.data);
+        if (response.data.token) {
+          TokenService.setUser({username:user.username, token:response.data.token});
         }
         return response.data;
       });
-  }
-
-  logout() {
-    return api.post(LOGOUT_POSTFIX, {
-      refreshToken: TokenService.getLocalRefreshToken(),
-    });
   }
 
   register(user) {

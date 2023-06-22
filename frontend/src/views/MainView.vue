@@ -6,15 +6,14 @@
           alt="background1912"
           class="frame-background"
       />
-      <div class="frame-header">
-        <span class="button_register" @click="$router.push('/register')"><span>авторизоваться</span></span>
-        <span class="button_about_project"><span>о проекте</span></span>
-      </div>
+
+      <HeaderComponent />
+
       <!-- <div class="frame-frame1">
           <span class="button_register_underlogo" @click="$router.push('/register')"><span>вход / регистрация</span></span>
       </div> -->
 
-      <div class="button_underlogo_register">
+      <div v-if="!$store.state.auth.status.loggedIn" class="button_underlogo_register">
         <a class="button" @click="$router.push('/register')">вход / регистрация</a>
         <!-- <button type="button"> вход / регистрация </button> -->
       </div>
@@ -37,11 +36,6 @@
           src="../assets/red_element.svg"
           class="red_element"
       />
-
-      <img
-          src="../assets/лого_белый.svg"
-          class="frame-image3"
-      />
       <span class="about_text_1">Сервис помогает новичку не запутаться в сложной системе предлагая ознакомительную экскурсию в be ITMO.</span>
       <span class="about_text_2"> Так же элемент геймификации позволяет удержать пользователя активным. Система рекомендаций может позволить каждому открыть для себя что-то новое</span>
     </div>
@@ -49,6 +43,8 @@
 </template>
 
 <script>
+import HeaderComponent from "@/components/HeaderComponent"; // Import the header component
+
 export default {
   name: 'Frame',
   props: {},
@@ -56,6 +52,9 @@ export default {
     return {
       raw8cvu: ' ',
     }
+  },
+  components: {
+    HeaderComponent, // Register the header component
   },
 }
 </script>
@@ -82,13 +81,13 @@ export default {
 
 .button {
 	position: absolute;
-width: 500px;
-height: 90px;
-left: 710px;
-top: 952.95px;
+  width: 500px;
+  height: 90px;
+  left: 710px;
+  top: 952.95px;
 
-background: #FFFFFF;
-border-radius: 50px;
+  background: #FFFFFF;
+  border-radius: 50px;
 	
 	outline: none;
 	display: inline-block;
@@ -135,19 +134,19 @@ border-radius: 50px;
 
 a.button_underlogo_register {
   position: absolute;
-width: 244px;
-height: 29px;
-left: 838px;
-top: 983.45px;
+  width: 244px;
+  height: 29px;
+  left: 838px;
+  top: 983.45px;
 
-font-family: 'Montserrat';
-font-style: normal;
-font-weight: 500;
-font-size: 24px;
-line-height: 29px;
-text-align: center;
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 29px;
+  text-align: center;
 
-color: #333333;
+  color: #333333;
 }
 
 
@@ -210,9 +209,6 @@ font-weight: 800;
 font-size: 128px;
 line-height: 100px;
 /* or 78% */
-
-
-
 }
 
 .about_text_1 {
@@ -229,9 +225,7 @@ font-size: 24px;
 line-height: 38px;
 /* or 158% */
 
-
 color: #FFFFFF;
-
 }
 
 .about_text_2 {
@@ -247,8 +241,6 @@ font-weight: 800;
 font-size: 24px;
 line-height: 38px;
 /* or 158% */
-
-
 color: #FFFFFF;
 
 }
@@ -277,46 +269,9 @@ color: #FFFFFF;
   position:absolute;
   height: 250vh;
   color:#151212;
+  z-index: -3;
 }
-.frame-header {
-  top: 0px;
-  left: 0px;
-  width: 100%;
-  height: 120px;
-  display: flex;
-  position: absolute;
-  align-items: flex-start;
-  flex-shrink: 1;
-  background-color: #141414;
-}
-.button_register {
-  top: 45.5px;
-  left: 80%;
-  color: rgba(255, 255, 255, 1);
-  height: auto;
-  position: absolute;
-  font-size: 24px;
-  text-align: left;
-  font-family: Montserrat;
-  font-weight: 500;
-  line-height: normal;
-  font-stretch: normal;
-  text-decoration: none;
-}
-.button_about_project {
-  top: 45.5px;
-  left: 70%;
-  color: rgba(255, 255, 255, 1);
-  height: auto;
-  position: absolute;
-  font-size: 24px;
-  text-align: left;
-  font-family: Montserrat;
-  font-weight: 500;
-  line-height: normal;
-  font-stretch: normal;
-  text-decoration: none;
-}
+
 .frame-frame1 {
   position: absolute;
 width: 500px;
@@ -328,23 +283,6 @@ background: #FFFFFF;
 border-radius: 50px;
 z-index: 1;
 }
-.button_register_underlogo {
-  position: absolute;
-width: 244px;
-height: 29px;
-left: 838px;
-top: 983.45px;
-
-font-family: 'Montserrat';
-font-style: normal;
-font-weight: 500;
-font-size: 24px;
-line-height: 29px;
-text-align: center;
-z-index: 2;
-
-color: #333333;
-}
 .main_logo {
   top: 320px;
   left: 13%;
@@ -352,18 +290,28 @@ color: #333333;
   height: 527px;
   position: absolute;
 }
-.frame-image3 {
-  top: 1vh;
-  left: 2.45%;
-  width: 28.3%;
-  height: 10vh;
-  position: absolute;
-}
-.frame-image4 {
+/* .frame-image4 {
   top: 120vh;
   left: 0.6%;
   width: 98.8%;
   height: 40vh;
   position: absolute;
-}
+} */
+  /* .button_underlogo_register {
+    position: absolute;
+    width: 244px;
+    height: 29px;
+    left: 838px;
+    top: 983.45px;
+  
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 29px;
+    text-align: center;
+    z-index: 2;
+  
+    color: #333333;
+  } */
 </style>

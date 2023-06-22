@@ -23,17 +23,8 @@ export const auth = {
       );
     },
     logout({ commit }) {
-      AuthService.logout().then(
-        (response) => {
           TokenService.removeUser();
-          return Promise.resolve(response);
-        },
-        (error) => {
-          TokenService.removeUser();
-          return Promise.reject(error);
-        }
-      );
-      commit("logout");
+          commit("logout");
     },
     register({ commit }, user) {
       return AuthService.register(user).then(
@@ -47,9 +38,7 @@ export const auth = {
         }
       );
     },
-    refreshToken({ commit }, accessToken) {
-      commit("refreshToken", accessToken);
-    },
+
   },
   mutations: {
     loginSuccess(state, user) {
@@ -69,10 +58,6 @@ export const auth = {
     },
     registerFailure(state) {
       state.status.loggedIn = false;
-    },
-    refreshToken(state, accessToken) {
-      state.status.loggedIn = true;
-      state.user = { ...state.user, accessToken: accessToken };
-    },
+    }, 
   },
 };

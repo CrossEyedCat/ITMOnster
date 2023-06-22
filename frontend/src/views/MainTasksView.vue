@@ -1,5 +1,7 @@
 <template>
   <div className="frame-container">
+    <HeaderComponent />
+    <MissionsComponent />
     <div className="frame-frame">
       <img
           src="../assets/background13424-jqxm.png"
@@ -93,35 +95,9 @@
           <span className="frame-text24"><span>0%</span></span>
         </div>
       </div>
-      <div className="frame-header">
-        <img
-            src="../assets/header3426-4v0d.png"
-            alt="header3426"
-            className="frame-header1"
-        />
-        <img src="../assets/Vector1022-sjqq.svg" alt="Vector1022" className="frame-vector"/>
-        <img
-            src="../assets/Rectangle605123-nwcm.png"
-            alt="Rectangle605123"
-            className="frame-Rectangle60"
-        />
-        <span className="frame-text26"><span>главная</span></span>
-        <span className="frame-text28"><span>достижения</span></span>
-        <div className="frame-frame08">
-          <img
-              src="../assets/logoosnovnoyrusskiybelyy13426-4z1r.png"
-              alt="logoosnovnoyrusskiybelyy13426"
-              className="frame-logoosnovnoyrusskiybelyy1"
-          />
-          <span className="frame-text30">
-            <span className="frame-text31">
-              tutorial
-              <span v-html="rawpyt2"></span>
-            </span>
-            <span>rpg</span>
-          </span>
-        </div>
-      </div>
+
+      
+
       <div className="frame-frame09">
         <img
             src="../assets/Rectangle425117-k69m.png"
@@ -264,6 +240,9 @@
 </template>
 
 <script>
+import HeaderComponent from "@/components/HeaderComponent"; // Import the header component
+import MissionsComponent from "@/components/MissionsComponent.vue"
+
 export default {
   name: 'MainTasks',
   props: {},
@@ -271,6 +250,10 @@ export default {
     return {
       rawpyt2: ' ',
     }
+  },
+  components: {
+    HeaderComponent, // Register the header component
+    MissionsComponent,
   },
 }
 </script>
@@ -300,6 +283,7 @@ export default {
   width: 1920px;
   height: 2100px;
   position: absolute;
+  z-index: -3;
 }
 
 .frame-frame01 {
@@ -675,25 +659,6 @@ export default {
   line-height: normal;
   font-stretch: normal;
   text-decoration: none;
-}
-
-.frame-header {
-  top: -2.0033798217773438px;
-  left: 0px;
-  width: 1920px;
-  height: 122.00337982177734px;
-  display: flex;
-  position: absolute;
-  align-items: flex-start;
-  flex-shrink: 1;
-}
-
-.frame-header1 {
-  top: 2.0033798217773438px;
-  left: 0px;
-  width: 1920px;
-  height: 120px;
-  position: absolute;
 }
 
 .frame-vector {

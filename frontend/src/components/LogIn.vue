@@ -65,10 +65,9 @@ export default {
       if (validationResult.msgForUsername || validationResult.msgForPassword) {
         return;
       }
-
       this.$store.dispatch("auth/login", this.user).then(
         () => {
-          this.$router.push("/");
+          this.$router.push("/MainTasks");
         },
         (error) => {
           this.loading = false;

@@ -1,19 +1,19 @@
 <template>
-    <div class="frame-header">
-      <img
-          src="../assets/лого_белый.svg"
-          class="header-logo"
-      />
-      
-      <span class="button" :class="{ selected: isAboutSelcted }" @click="about"><span>о проекте</span></span>
-      <span v-if="$store.state.auth.status.loggedIn" class="button" :class="{ selected: isMainSelcted }" @click="main"><span>главная</span></span>
-      <span v-if="$store.state.auth.status.loggedIn" class="button" :class="{ selected: isAchievementsSelcted }" @click="achievements"><span>достижения</span></span>
-      <span v-if="$store.state.auth.status.loggedIn" class="button" @click="logout"><span>выйти</span></span>
-      <span v-if="!$store.state.auth.status.loggedIn" class="button" @click="$router.push('/login')"><span>авторизоваться</span></span>
-    </div>
-  </template>
-  
-  <script>
+  <div class="frame-header">
+    <img
+        src="../assets/лого_белый.svg"
+        class="header-logo"
+    />
+    
+    <span class="button" :class="{ selected: isAboutSelcted }" @click="about"><span>о проекте</span></span>
+    <span v-if="$store.state.auth.status.loggedIn" class="button" :class="{ selected: isMainSelcted }" @click="main"><span>главная</span></span>
+    <span v-if="$store.state.auth.status.loggedIn" class="button" :class="{ selected: isAchievementsSelcted }" @click="achievements"><span>достижения</span></span>
+    <span v-if="$store.state.auth.status.loggedIn" class="button" @click="logout"><span>выйти</span></span>
+    <span v-if="!$store.state.auth.status.loggedIn" class="button" @click="$router.push('/login')"><span>авторизоваться</span></span>
+  </div>
+</template>
+
+<script>
   export default {
     methods: {
       logout() {
@@ -50,7 +50,7 @@
       },
     },
   };
-  </script>
+</script>
 
 
 <style scoped>
@@ -70,6 +70,11 @@
 .button.selected {
   text-decoration: underline;
 }
+.button.selected:hover{
+  color: rgba(255, 255, 255, 1);
+  cursor: default;
+}
+
 .button:hover{
   color: rgb(214, 214, 214);
 }
